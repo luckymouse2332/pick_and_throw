@@ -10,7 +10,7 @@ public:
   /**
    * 初始化端口
    */
-  void init();
+  void setup();
 
   /**
    * 启动

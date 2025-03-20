@@ -1,7 +1,7 @@
 #include "car.hpp"
 #include <Arduino.h>
 
-void CarController::init()
+void CarController::setup()
 {
   pinMode(left_forward_pin, OUTPUT);
   pinMode(right_forward_pin, OUTPUT);
