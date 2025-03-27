@@ -11,12 +11,20 @@ public:
   SensorController(int rgt_e, int lft_e, int rgt, int lft, int md) 
     : right_edge(rgt_e), left_edge(lft_e), right(rgt), left(lft), middle(md) {}
 
+  /**
+   * 初始化端口
+   */
   void setup();
 
   /**
    * 穿过了线
    */
   bool crossed();
+
+  /**
+   * 是否在路口上
+   */
+  bool crossing();
 
   /**
    * 中心传感器左侧的传感器是否在线上

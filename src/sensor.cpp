@@ -1,7 +1,8 @@
 #include "sensor.hpp"
 #include "Arduino.h"
 
-void SensorController::setup() {
+void SensorController::setup()
+{
   pinMode(right, INPUT);
   pinMode(left, INPUT);
   pinMode(left_edge, INPUT);
@@ -9,14 +10,17 @@ void SensorController::setup() {
   pinMode(middle, INPUT);
 }
 
+bool SensorController::crossing()
+{
+  return middle_state() && left_state() && right_state() && left_edge_state() && right_edge_state();
+}
+
 bool SensorController::crossed()
 {
   static bool line_flag = false;
 
-  int state = digitalRead(middle);
-
   // 统计路口
-  if (state && left_state() && right_state() && left_edge_state() && right_edge_state())
+  if (crossing())
   {
     Serial.println("Online...");
     line_flag = true;
@@ -31,22 +35,27 @@ bool SensorController::crossed()
   return false;
 }
 
-bool SensorController::right_state() {
+bool SensorController::right_state()
+{
   return digitalRead(right) == 1;
 }
 
-bool SensorController::left_state() {
+bool SensorController::left_state()
+{
   return digitalRead(left) == 1;
 }
 
-bool SensorController::right_edge_state() {
+bool SensorController::right_edge_state()
+{
   return digitalRead(right_edge) == 1;
 }
 
-bool SensorController::left_edge_state() {
+bool SensorController::left_edge_state()
+{
   return digitalRead(left_edge) == 1;
 }
 
-bool SensorController::middle_state() {
+bool SensorController::middle_state()
+{
   return digitalRead(middle) == 1;
 }
